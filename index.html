@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tu Nombre | Desarrollo de Software</title>
+  <meta name="description" content="Desarrollo de apps móviles con Flutter, sitios web, bases de datos y análisis de datos con Python y R.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="logo" href="#inicio"><span class="logo-mark">&lt;/&gt;</span> TuNombre</a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav id="menu">
+      <a href="#servicios">Servicios</a>
+      <a href="#stack">Tecnologías</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto" class="btn btn-small">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="container">
+        <p class="eyebrow mono">// desarrollador de software</p>
+        <h1>Soluciones completas: <span class="grad">app, datos y reportes</span>.</h1>
+        <p class="lead">Desarrollo aplicaciones móviles con Flutter, sitios web y bases de datos, y convierto tus datos en información útil con Python, R y SQL.</p>
+        <div class="cta">
+          <a href="#proyectos" class="btn">Ver proyectos</a>
+          <a href="#contacto" class="btn btn-ghost">Hablemos</a>
+        </div>
+        <ul class="hero-tags mono">
+          <li>Flutter</li><li>Python</li><li>SQL</li><li>JavaScript</li><li>PostgreSQL</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="servicios" class="section">
+      <div class="container">
+        <p class="eyebrow mono">01 / servicios</p>
+        <h2>Lo que puedo hacer por ti</h2>
+        <div class="grid cols-4">
+          <article class="card">
+            <div class="icon">📱</div>
+            <h3>Apps móviles</h3>
+            <p>Aplicaciones para Android e iOS con Flutter y Dart, conectadas a una base de datos o API.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🌐</div>
+            <h3>Sitios y apps web</h3>
+            <p>Páginas rápidas y adaptables con HTML, CSS y JavaScript: landing pages, formularios y paneles.</p>
+          </article>
+          <article class="card">
+            <div class="icon">🗄️</div>
+            <h3>Bases de datos</h3>
+            <p>Diseño, consultas, optimización y migración en PostgreSQL, SQL Server y MySQL.</p>
+          </article>
+          <article class="card">
+            <div class="icon">📊</div>
+            <h3>Datos y automatización</h3>
+            <p>Análisis, dashboards y scripts con Python, R y SQL que ahorran horas de trabajo manual.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="section alt">
+      <div class="container">
+        <p class="eyebrow mono">02 / tecnologías</p>
+        <h2>Mi stack</h2>
+        <div class="stack">
+          <div>
+            <h3 class="mono">Móvil</h3>
+            <ul class="chips"><li>Dart</li><li>Flutter</li></ul>
+          </div>
+          <div>
+            <h3 class="mono">Web</h3>
+            <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+          </div>
+          <div>
+            <h3 class="mono">Datos</h3>
+            <ul class="chips"><li>Python</li><li>R</li><li>SQL</li></ul>
+          </div>
+          <div>
+            <h3 class="mono">Bases de datos</h3>
+            <ul class="chips"><li>PostgreSQL</li><li>SQL Server</li><li>MySQL / phpMyAdmin</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyectos" class="section">
+      <div class="container">
+        <p class="eyebrow mono">03 / proyectos</p>
+        <h2>Trabajos destacados</h2>
+        <div class="filters mono" id="filters"></div>
+        <div class="grid cols-3" id="projects"></div>
+      </div>
+    </section>
+
+    <section id="proceso" class="section alt">
+      <div class="container">
+        <p class="eyebrow mono">04 / proceso</p>
+        <h2>Cómo trabajo</h2>
+        <ol class="steps">
+          <li><span class="mono">01</span><h3>Análisis</h3><p>Entiendo tu problema y definimos el alcance.</p></li>
+          <li><span class="mono">02</span><h3>Propuesta</h3><p>Te presento plazos, costo y entregables claros.</p></li>
+          <li><span class="mono">03</span><h3>Desarrollo</h3><p>Avances frecuentes que puedes revisar y comentar.</p></li>
+          <li><span class="mono">04</span><h3>Entrega y soporte</h3><p>Entrega documentada y acompañamiento posterior.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="contacto" class="section">
+      <div class="container contact">
+        <p class="eyebrow mono">05 / contacto</p>
+        <h2>¿Tienes un proyecto en mente?</h2>
+        <p class="lead">Cuéntame qué necesitas y te respondo con una propuesta.</p>
+        <div class="cta">
+          <a class="btn" href="mailto:tucorreo@ejemplo.com">tucorreo@ejemplo.com</a>
+          <a class="btn btn-ghost" href="https://github.com/TU-USUARIO" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/TU-USUARIO" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container mono">© <span id="year"></span> Tu Nombre · Hecho con HTML, CSS y JavaScript</div>
+  </footer>
+
+  <script src="projects.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
