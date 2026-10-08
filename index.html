@@ -3,38 +3,223 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tu Nombre | Desarrollo de Software</title>
-  <meta name="description" content="Desarrollo de apps móviles con Flutter, sitios web, bases de datos y análisis de datos con Python y R.">
+  <title>Darikso Quispe | Desarrollo de Software</title>
+  <meta name="description" content="Darikso Quispe, ingeniero de Ciencias de Datos e Inteligencia Artificial. Apps móviles con Flutter, sitios web, bases de datos y análisis de datos.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="intro.css">
+  <script>
+    // Activa la intro salvo que el visitante prefiera menos movimiento.
+    // El temporizador es una red de seguridad: si algo falla, la página se abre sola.
+    (function () {
+      var r = document.documentElement;
+      try {
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          r.classList.add("has-intro");
+          setTimeout(function () { r.classList.add("intro-done"); }, 9000);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
-  <header class="nav">
-    <a class="logo" href="#inicio"><span class="logo-mark">&lt;/&gt;</span> TuNombre</a>
+  <!-- Intro tecnológica (HUD): se muestra al cargar y se elimina sola al terminar -->
+  <div id="intro" class="intro" role="status" aria-live="off" aria-label="Cargando portafolio">
+    <div class="intro-bg"><div class="scan"></div></div>
+
+    <div class="intro-stage">
+      <!-- Paneles laterales (solo en pantallas horizontales) -->
+      <svg class="hud hud-wide" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+        <!-- Marco y línea superior -->
+        <g class="st">
+          <path class="draw" pathLength="100" style="--d:0" d="M30 96V30H96"/>
+          <path class="draw" pathLength="100" style="--d:.1" d="M1184 30H1250V96"/>
+          <path class="draw" pathLength="100" style="--d:.2" d="M30 624V690H96"/>
+          <path class="draw" pathLength="100" style="--d:.3" d="M1250 624V690H1184"/>
+        </g>
+        <path class="st thin draw" pathLength="100" style="--d:.4" d="M330 34H540L560 52H720L740 34H950"/>
+        <text class="lbl tc" x="640" y="24">DARIKSO.QUISPE // PORTAFOLIO 2026</text>
+
+        <!-- Indicadores circulares -->
+        <g class="gauge fade" style="--i:0;--p:30;--d:.2" transform="translate(84 100)">
+          <circle class="track" r="24"/>
+          <circle class="val" r="24" pathLength="100" transform="rotate(-90)"/>
+          <text class="num" y="4">30%</text>
+        </g>
+        <g class="gauge fade" style="--i:1;--p:50;--d:.3" transform="translate(152 100)">
+          <circle class="track" r="24"/>
+          <circle class="val" r="24" pathLength="100" transform="rotate(-90)"/>
+          <text class="num" y="4">50%</text>
+        </g>
+        <g class="gauge fade" style="--i:2;--p:70;--d:.4" transform="translate(220 100)">
+          <circle class="track" r="24"/>
+          <circle class="val" r="24" pathLength="100" transform="rotate(-90)"/>
+          <text class="num" y="4">70%</text>
+        </g>
+        <text class="lbl" x="56" y="160" style="--d:.5">INTERFAZ DE DESARROLLO</text>
+
+        <!-- Regla vertical -->
+        <g class="fade" style="--d:.5" transform="translate(46 236)">
+          <path class="st thin" d="M0 0V196"/>
+          <path class="tick" d="M10 0V196"/>
+          <path class="marker slide" d="M-9 0L-1 -5V5Z"/>
+        </g>
+
+        <!-- Monitor de pulso -->
+        <g class="fade" style="--d:.6" transform="translate(40 486)">
+          <path class="st thin" d="M0 0H178L190 12V84H0Z"/>
+          <path class="st ecg-base" d="M10 46H46L54 22L66 72L76 46H112L120 34L128 58L136 46H180"/>
+          <path class="st ecg" pathLength="100" d="M10 46H46L54 22L66 72L76 46H112L120 34L128 58L136 46H180"/>
+          <text class="lbl" x="10" y="-10" style="--d:.7">PULSO DEL SISTEMA</text>
+        </g>
+
+        <!-- Ecualizador (las barras las genera intro.js) -->
+        <text class="lbl" x="44" y="598" style="--d:.8">FLUJO DE DATOS</text>
+        <g class="eq" transform="translate(44 676)"></g>
+
+        <!-- Gráfico circular -->
+        <g class="fade" style="--d:.5" transform="translate(1130 112)">
+          <g class="spin" style="--t:46s">
+            <circle class="pie p1" r="18" pathLength="100"/>
+            <circle class="pie p2" r="18" pathLength="100"/>
+            <circle class="pie p3" r="18" pathLength="100"/>
+          </g>
+          <circle class="st thin" r="52" stroke-dasharray="3 5"/>
+        </g>
+        <text class="lbl tc" x="1130" y="188" style="--d:.7">ANÁLISIS DE DATOS</text>
+
+        <!-- Panel de módulos -->
+        <g class="fade" style="--d:.6" transform="translate(1000 226)">
+          <path class="st thin" d="M0 0H220L240 20V170H0Z"/>
+          <text class="lbl" x="14" y="26">MÓDULOS</text>
+          <path class="st thin" d="M14 38H226"/>
+          <g style="--i:0" transform="translate(14 64)">
+            <circle class="dot" r="4.5"/><text class="lbl" x="16" y="4">FLUTTER</text><text class="ok tr" x="212" y="4">OK</text>
+          </g>
+          <g style="--i:1" transform="translate(14 92)">
+            <circle class="dot" r="4.5"/><text class="lbl" x="16" y="4">PYTHON</text><text class="ok tr" x="212" y="4">OK</text>
+          </g>
+          <g style="--i:2" transform="translate(14 120)">
+            <circle class="dot" r="4.5"/><text class="lbl" x="16" y="4">SQL · BD</text><text class="ok tr" x="212" y="4">OK</text>
+          </g>
+          <g style="--i:3" transform="translate(14 148)">
+            <circle class="dot" r="4.5"/><text class="lbl" x="16" y="4">IA · DATOS</text><text class="ok tr" x="212" y="4">OK</text>
+          </g>
+        </g>
+
+        <!-- Dial -->
+        <g class="fade" style="--d:.8" transform="translate(1120 478)">
+          <g class="spin" style="--t:16s"><circle class="st thin" r="48" pathLength="100" stroke-dasharray=".7 1.8"/></g>
+          <g class="spin ccw" style="--t:9s"><circle class="st" r="38" pathLength="100" stroke-dasharray="32 18" style="stroke-width:3"/></g>
+          <circle class="st thin" r="27"/>
+          <text class="num live" y="4">LIVE</text>
+        </g>
+        <text class="lbl tc" x="1120" y="552" style="--d:.9">NÚCLEO ACTIVO</text>
+
+        <!-- Base del holograma -->
+        <g transform="translate(640 556)">
+          <ellipse class="st" rx="132" ry="13"/>
+          <ellipse class="st thin pulse" style="--d:0s" rx="190" ry="19"/>
+          <ellipse class="st thin pulse" style="--d:.5s" rx="250" ry="25"/>
+        </g>
+
+        <!-- Líneas guía hacia el núcleo -->
+        <g class="st thin">
+          <path class="draw" pathLength="100" style="--d:.9" d="M262 100H392L424 132"/>
+          <path class="draw" pathLength="100" style="--d:1" d="M1004 296H900L866 330"/>
+          <path class="draw" pathLength="100" style="--d:1.1" d="M232 505H382L412 475"/>
+          <path class="draw" pathLength="100" style="--d:1.2" d="M1074 440H920L888 410"/>
+        </g>
+        <g class="fade" style="--d:1.4">
+          <circle class="end" cx="424" cy="132" r="3"/>
+          <circle class="end" cx="866" cy="330" r="3"/>
+          <circle class="end" cx="412" cy="475" r="3"/>
+          <circle class="end" cx="888" cy="410" r="3"/>
+        </g>
+      </svg>
+
+      <!-- Núcleo giratorio (también sirve de fondo animado en la portada) -->
+      <svg class="hud hud-core" viewBox="-200 -200 400 400" aria-hidden="true" focusable="false">
+        <g class="in" style="--i:0"><g class="spin" style="--t:60s">
+          <circle class="st thin" r="193" pathLength="360" stroke-dasharray="1 4"/>
+        </g></g>
+        <g class="in" style="--i:1"><g class="spin ccw" style="--t:26s">
+          <circle class="st arc" r="178" pathLength="360" stroke-dasharray="62 28"/>
+        </g></g>
+        <g class="in" style="--i:2"><g class="spin" style="--t:44s">
+          <circle class="st thin" r="162" pathLength="360" stroke-dasharray=".8 3.2"/>
+        </g></g>
+        <g class="in" style="--i:3"><g class="spin" style="--t:18s">
+          <circle class="st bold" r="141" pathLength="360" stroke-dasharray="100 30 60 30 80 60"/>
+        </g></g>
+        <g class="in" style="--i:4">
+          <circle class="st mid" r="119"/>
+          <path class="marker" d="M0 -127L5 -119H-5Z"/>
+          <path class="marker" d="M0 -127L5 -119H-5Z" transform="rotate(90)"/>
+          <path class="marker" d="M0 -127L5 -119H-5Z" transform="rotate(180)"/>
+          <path class="marker" d="M0 -127L5 -119H-5Z" transform="rotate(270)"/>
+        </g>
+        <g class="in" style="--i:5"><g class="spin ccw" style="--t:34s">
+          <circle class="st dots" r="104" pathLength="360" stroke-dasharray=".01 6"/>
+        </g></g>
+        <g class="in" style="--i:6"><g class="spin" style="--t:11s">
+          <circle class="st arc" r="88" pathLength="360" stroke-dasharray="50 40"/>
+        </g></g>
+        <g class="in" style="--i:7"><g class="spin" style="--t:3.6s">
+          <path class="sweep" d="M0 0L118 0A118 118 0 0 0 102.2 -59Z"/>
+          <path class="sweep s2" d="M0 0L118 0A118 118 0 0 0 114.5 -28.6Z"/>
+          <path class="sweep s3" d="M0 0L118 0A118 118 0 0 0 117.5 -10.3Z"/>
+          <path class="lead-line" d="M0 0H118"/>
+        </g></g>
+        <g class="in" style="--i:8"><g class="spin ccw" style="--t:8s">
+          <circle class="st bold" r="64" pathLength="360" stroke-dasharray="140 220" style="stroke-width:8"/>
+        </g></g>
+        <g class="in" style="--i:9"><g class="spin" style="--t:14s">
+          <circle class="st" r="46" pathLength="360" stroke-dasharray="6 6"/>
+        </g></g>
+        <g class="in" style="--i:10">
+          <circle class="core-halo" r="30"/>
+          <circle class="core-mid" r="18"/>
+          <circle class="core-dot" r="8"/>
+          <circle class="flash" r="20"/>
+        </g>
+      </svg>
+
+      <p class="intro-title">DARIKSO QUISPE</p>
+      <p class="intro-status" id="introStatus">INICIALIZANDO INTERFAZ…</p>
+      <div class="intro-progress"><i></i></div>
+      <div class="intro-pct"><small>CARGA</small><b id="introPct">0%</b></div>
+      <button class="intro-skip" type="button">Saltar intro ›</button>
+    </div>
+  </div>
+
+  <header class="nav rv-nav">
+    <a class="logo" href="#inicio"><span class="logo-mark">&lt;/&gt;</span> Darikso Quispe</a>
     <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
     <nav id="menu">
       <a href="#servicios">Servicios</a>
-      <a href="#stack">Tecnologías</a>
       <a href="#proyectos">Proyectos</a>
-      <a href="#proceso">Proceso</a>
+      <a href="#stack">Tecnologías</a>
+      <a href="#sobre-mi">Sobre mí</a>
       <a href="#contacto" class="btn btn-small">Contacto</a>
     </nav>
   </header>
 
   <main>
     <section id="inicio" class="hero">
+      <div class="hero-hud" id="heroHud" aria-hidden="true"></div>
       <div class="container">
-        <p class="eyebrow mono">// desarrollador de software</p>
-        <h1>Soluciones completas: <span class="grad">app, datos y reportes</span>.</h1>
-        <p class="lead">Desarrollo aplicaciones móviles con Flutter, sitios web y bases de datos, y convierto tus datos en información útil con Python, R y SQL.</p>
-        <div class="cta">
+        <p class="eyebrow mono rv" style="--i:1">// Darikso Quispe · Ingeniero de Ciencias de Datos e IA</p>
+        <h1 class="rv" style="--i:2">Soluciones completas: <span class="grad">app, datos y reportes</span>.</h1>
+        <p class="lead rv" style="--i:3">Desarrollo aplicaciones móviles con Flutter, sitios web y sistemas de gestión con bases de datos, y convierto tus datos en información útil con Python, R y SQL. Lima, Perú.</p>
+        <div class="cta rv" style="--i:4">
           <a href="#proyectos" class="btn">Ver proyectos</a>
           <a href="#contacto" class="btn btn-ghost">Hablemos</a>
         </div>
-        <ul class="hero-tags mono">
-          <li>Flutter</li><li>Python</li><li>SQL</li><li>JavaScript</li><li>PostgreSQL</li>
+        <ul class="hero-tags mono rv" style="--i:5">
+          <li>Flutter</li><li>Python</li><li>SQL</li><li>JavaScript</li><li>PostgreSQL</li><li>Firebase</li>
         </ul>
       </div>
     </section>
@@ -47,71 +232,132 @@
           <article class="card">
             <div class="icon">📱</div>
             <h3>Apps móviles</h3>
-            <p>Aplicaciones para Android e iOS con Flutter y Dart, conectadas a una base de datos o API.</p>
+            <p>Aplicaciones multiplataforma con Flutter y Dart, conectadas a Firebase o a una base de datos.</p>
           </article>
           <article class="card">
             <div class="icon">🌐</div>
-            <h3>Sitios y apps web</h3>
-            <p>Páginas rápidas y adaptables con HTML, CSS y JavaScript: landing pages, formularios y paneles.</p>
+            <h3>Sitios y sistemas web</h3>
+            <p>Landing pages, tiendas virtuales y sistemas de gestión con HTML, CSS, JavaScript y PHP (Laravel).</p>
           </article>
           <article class="card">
             <div class="icon">🗄️</div>
             <h3>Bases de datos</h3>
-            <p>Diseño, consultas, optimización y migración en PostgreSQL, SQL Server y MySQL.</p>
+            <p>Diseño, consultas y administración en PostgreSQL, MySQL, SQL Server y Firebase.</p>
           </article>
           <article class="card">
             <div class="icon">📊</div>
-            <h3>Datos y automatización</h3>
-            <p>Análisis, dashboards y scripts con Python, R y SQL que ahorran horas de trabajo manual.</p>
+            <h3>Datos e inteligencia artificial</h3>
+            <p>Análisis, reportes en Power BI, modelos predictivos, chatbots y automatización con Python y R.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="stack" class="section alt">
+    <section id="proyectos" class="section alt">
       <div class="container">
-        <p class="eyebrow mono">02 / tecnologías</p>
-        <h2>Mi stack</h2>
-        <div class="stack">
-          <div>
-            <h3 class="mono">Móvil</h3>
-            <ul class="chips"><li>Dart</li><li>Flutter</li></ul>
-          </div>
-          <div>
-            <h3 class="mono">Web</h3>
-            <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
-          </div>
-          <div>
-            <h3 class="mono">Datos</h3>
-            <ul class="chips"><li>Python</li><li>R</li><li>SQL</li></ul>
-          </div>
-          <div>
-            <h3 class="mono">Bases de datos</h3>
-            <ul class="chips"><li>PostgreSQL</li><li>SQL Server</li><li>MySQL / phpMyAdmin</li></ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="proyectos" class="section">
-      <div class="container">
-        <p class="eyebrow mono">03 / proyectos</p>
+        <p class="eyebrow mono">02 / proyectos</p>
         <h2>Trabajos destacados</h2>
         <div class="filters mono" id="filters"></div>
         <div class="grid cols-3" id="projects"></div>
       </div>
     </section>
 
-    <section id="proceso" class="section alt">
+    <section id="stack" class="section">
       <div class="container">
-        <p class="eyebrow mono">04 / proceso</p>
-        <h2>Cómo trabajo</h2>
-        <ol class="steps">
-          <li><span class="mono">01</span><h3>Análisis</h3><p>Entiendo tu problema y definimos el alcance.</p></li>
-          <li><span class="mono">02</span><h3>Propuesta</h3><p>Te presento plazos, costo y entregables claros.</p></li>
-          <li><span class="mono">03</span><h3>Desarrollo</h3><p>Avances frecuentes que puedes revisar y comentar.</p></li>
-          <li><span class="mono">04</span><h3>Entrega y soporte</h3><p>Entrega documentada y acompañamiento posterior.</p></li>
-        </ol>
+        <p class="eyebrow mono">03 / tecnologías</p>
+        <h2>Mi stack</h2>
+        <div class="stack">
+          <div>
+            <h3 class="mono">Lenguajes</h3>
+            <ul class="chips"><li>Python</li><li>Java</li><li>PHP</li><li>R</li><li>Dart</li><li>SQL</li></ul>
+          </div>
+          <div>
+            <h3 class="mono">Web</h3>
+            <ul class="chips"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Laravel</li></ul>
+          </div>
+          <div>
+            <h3 class="mono">Móvil</h3>
+            <ul class="chips"><li>Flutter</li><li>Dart</li></ul>
+          </div>
+          <div>
+            <h3 class="mono">Bases de datos</h3>
+            <ul class="chips"><li>PostgreSQL</li><li>MySQL / phpMyAdmin</li><li>SQL Server</li><li>Firebase</li><li>NoSQL</li></ul>
+          </div>
+          <div>
+            <h3 class="mono">IA y datos</h3>
+            <ul class="chips"><li>Modelos predictivos</li><li>Redes neuronales</li><li>IBM Watson</li><li>Power BI</li></ul>
+          </div>
+          <div>
+            <h3 class="mono">Herramientas</h3>
+            <ul class="chips"><li>Git</li><li>GitHub</li><li>AWS</li><li>Windows Server 2019</li><li>Cisco Packet Tracer</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre-mi" class="section alt">
+      <div class="container">
+        <p class="eyebrow mono">04 / sobre mí</p>
+        <h2>Trayectoria</h2>
+        <p class="lead about">Egresado de Ingeniería de Ciencias de Datos e Inteligencia Artificial en SENATI. Actualmente dirijo Minicodevelopers S.A.C.S., una empresa de desarrollo de software, y sigo participando como desarrollador en sus proyectos. Me gusta resolver problemas reales con tecnología y aprender de forma continua.</p>
+
+        <div class="two-col">
+          <div>
+            <h3 class="mono col-title">Experiencia</h3>
+            <ul class="timeline">
+              <li>
+                <span class="mono">Ene 2025 – Actualidad</span>
+                <h4>CEO / Gerente General · Minicodevelopers S.A.C.S</h4>
+                <p>Liderazgo de proyectos tecnológicos, relación con clientes y desarrollo de apps móviles, software empresarial, tiendas virtuales y landing pages.</p>
+              </li>
+              <li>
+                <span class="mono">Jul – Dic 2024</span>
+                <h4>Desarrollador de software · Magic Food</h4>
+                <p>Sistema de toma de pedidos de comida en móvil con Flutter y Firebase.</p>
+              </li>
+              <li>
+                <span class="mono">Ene 2023 – Jun 2024</span>
+                <h4>Desarrollador de software · Dermoesthetic Láser</h4>
+                <p>Sistema de registro de pacientes, página web y base de datos.</p>
+              </li>
+              <li>
+                <span class="mono">2022</span>
+                <h4>Desarrollador freelance</h4>
+                <p>Sistema web educativo infantil, app móvil de bienestar emocional y sitio web corporativo para una empresa hotelera.</p>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="mono col-title">Formación y certificaciones</h3>
+            <ul class="timeline">
+              <li>
+                <span class="mono">2021 – 2024 · Egresado</span>
+                <h4>Ingeniería de Ciencias de Datos e Inteligencia Artificial · SENATI</h4>
+              </li>
+              <li><span class="mono">Mar 2024</span><h4>Power BI Básico · Netzun</h4></li>
+              <li><span class="mono">Feb 2024</span><h4>SQL para principiantes · Netzun</h4></li>
+              <li><span class="mono">Ago 2021</span><h4>Introduction to Packet Tracer · Cisco Networking Academy</h4></li>
+            </ul>
+
+            <h3 class="mono col-title">Logros destacados</h3>
+            <ul class="timeline">
+              <li>
+                <span class="mono">2026</span>
+                <h4>3.er puesto nacional · Concurso Nacional de Papers (Egresados)</h4>
+                <p>XXXII CONEIMERA Ucayali 2026, con el artículo “Find a Pet: plataforma inteligente con IA para identificar y localizar mascotas perdidas”.</p>
+              </li>
+              <li>
+                <span class="mono">2025</span>
+                <h4>Diploma de reconocimiento · Feria de Proyectos SENATI</h4>
+              </li>
+              <li>
+                <span class="mono">2024 – Actualidad</span>
+                <h4>Cofundador de Mecasenatinos</h4>
+                <p>Primera comunidad de robótica de SENATI, sede Independencia. Participación en concursos nacionales de robótica.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -121,18 +367,19 @@
         <h2>¿Tienes un proyecto en mente?</h2>
         <p class="lead">Cuéntame qué necesitas y te respondo con una propuesta.</p>
         <div class="cta">
-          <a class="btn" href="mailto:tucorreo@ejemplo.com">tucorreo@ejemplo.com</a>
-          <a class="btn btn-ghost" href="https://github.com/TU-USUARIO" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/TU-USUARIO" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="mailto:dariksodanielo@gmail.com">dariksodanielo@gmail.com</a>
+          <a class="btn btn-ghost" href="https://github.com/Darikso27" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/darikso-daniel-quispe-vargas-974562252" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="container mono">© <span id="year"></span> Tu Nombre · Hecho con HTML, CSS y JavaScript</div>
+    <div class="container mono">© <span id="year"></span> Darikso Daniel Quispe Vargas · Lima, Perú</div>
   </footer>
 
+  <script src="intro.js"></script>
   <script src="projects.js"></script>
   <script src="script.js"></script>
 </body>

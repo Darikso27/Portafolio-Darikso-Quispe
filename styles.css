@@ -141,6 +141,21 @@ h3 { font-size: 1.1rem; }
 
 footer { border-top: 1px solid var(--border); padding: 26px 0; color: var(--muted); font-size: .8rem; text-align: center; }
 
+/* About / timeline */
+.about { margin-top: -12px; }
+.two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+.col-title { color: var(--cyan); font-size: .85rem; font-weight: 500; margin: 8px 0 18px; }
+.two-col .col-title:not(:first-child) { margin-top: 36px; }
+.timeline { border-left: 1px solid var(--border); padding-left: 22px; display: grid; gap: 22px; }
+.timeline li { position: relative; }
+.timeline li::before {
+  content: ""; position: absolute; left: -28px; top: 7px; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--cyan); box-shadow: var(--glow);
+}
+.timeline span { color: var(--muted); font-size: .78rem; }
+.timeline h4 { font-size: 1rem; font-weight: 600; margin: 2px 0; }
+.timeline p { color: var(--muted); font-size: .92rem; }
+
 /* Reveal animation */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s, transform .6s; }
 .reveal.visible { opacity: 1; transform: none; }
