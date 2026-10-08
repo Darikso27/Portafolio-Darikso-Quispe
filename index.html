@@ -12,13 +12,15 @@
   <link rel="stylesheet" href="intro.css">
   <script>
     // Activa la intro salvo que el visitante prefiera menos movimiento.
-    // El temporizador es una red de seguridad: si algo falla, la página se abre sola.
+    // El temporizador es una red de seguridad: si intro.js no llega a cargar, la página se abre sola.
     (function () {
       var r = document.documentElement;
       try {
         if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           r.classList.add("has-intro");
-          setTimeout(function () { r.classList.add("intro-done"); }, 9000);
+          setTimeout(function () {
+            if (!r.classList.contains("intro-live")) r.classList.add("intro-done");
+          }, 8000);
         }
       } catch (e) {}
     })();
@@ -26,7 +28,7 @@
 </head>
 <body>
   <!-- Intro tecnológica (HUD): se muestra al cargar y se elimina sola al terminar -->
-  <div id="intro" class="intro" role="status" aria-live="off" aria-label="Cargando portafolio">
+  <div id="intro" class="intro is-gate" role="status" aria-live="off" aria-label="Cargando portafolio">
     <div class="intro-bg"><div class="scan"></div></div>
 
     <div class="intro-stage">
@@ -187,11 +189,22 @@
         </g>
       </svg>
 
+      <!-- Pantalla de inicio: el clic permite activar el sonido y la voz desde el primer segundo -->
+      <div class="gate">
+        <p class="gate-kicker">SISTEMA EN ESPERA</p>
+        <p class="gate-name">DARIKSO QUISPE</p>
+        <button class="gate-start" id="gateStart" type="button">Iniciar sistema<small>con sonido y voz</small></button>
+        <button class="gate-mute" id="gateMute" type="button">Entrar sin sonido</button>
+      </div>
+
       <p class="intro-title">DARIKSO QUISPE</p>
       <p class="intro-status" id="introStatus">INICIALIZANDO INTERFAZ…</p>
       <div class="intro-progress"><i></i></div>
       <div class="intro-pct"><small>CARGA</small><b id="introPct">0%</b></div>
-      <button class="intro-skip" type="button">Saltar intro ›</button>
+      <div class="intro-actions">
+        <button class="intro-btn intro-sound" type="button" data-state="locked">Activar sonido</button>
+        <button class="intro-btn intro-skip" type="button">Saltar intro ›</button>
+      </div>
     </div>
   </div>
 
@@ -379,6 +392,7 @@
     <div class="container mono">© <span id="year"></span> Darikso Daniel Quispe Vargas · Lima, Perú</div>
   </footer>
 
+  <script src="intro-audio.js"></script>
   <script src="intro.js"></script>
   <script src="projects.js"></script>
   <script src="script.js"></script>

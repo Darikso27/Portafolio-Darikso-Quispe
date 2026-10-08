@@ -164,11 +164,16 @@ html.intro-done .intro { opacity: 0; transform: scale(1.05); visibility: hidden;
   color: #e6f6ff;
   font-variant-numeric: tabular-nums;
 }
-.intro-skip {
+.intro-actions {
   position: absolute;
   left: 50%;
   top: 97%;
   transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 12);
+}
+.intro-btn {
   padding: calc(var(--u) * 4) calc(var(--u) * 12);
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: max(8px, calc(var(--u) * 10));
@@ -181,8 +186,115 @@ html.intro-done .intro { opacity: 0; transform: scale(1.05); visibility: hidden;
   border-radius: 6px;
   cursor: pointer;
 }
-.intro-skip:hover,
-.intro-skip:focus-visible { color: #fff; border-color: var(--hud); outline: none; }
+.intro-btn:hover,
+.intro-btn:focus-visible { color: #fff; border-color: var(--hud); outline: none; }
+
+/* Botón de sonido: punto de estado + aviso pulsante mientras falta activarlo */
+.intro-sound {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .7em;
+  min-width: calc(var(--u) * 150);
+}
+.intro-sound::before {
+  content: "";
+  width: .6em;
+  height: .6em;
+  border-radius: 50%;
+  background: rgba(186, 230, 253, .45);
+}
+.intro-sound[data-state="on"]::before { background: #5eead4; box-shadow: 0 0 8px #5eead4; }
+.intro-sound[data-state="locked"] {
+  color: #e6f6ff;
+  border-color: var(--hud-2);
+  animation: introHint 1.6s ease-in-out infinite;
+}
+.intro-sound[data-state="locked"]::before { background: var(--hud-2); animation: introBlink .8s steps(2) infinite; }
+@keyframes introHint {
+  0%, 100% { box-shadow: 0 0 0 rgba(34, 211, 238, 0); }
+  50% { box-shadow: 0 0 14px rgba(34, 211, 238, .55); }
+}
+
+/* ---------- Pantalla de inicio (el clic permite activar el sonido) ---------- */
+.gate {
+  position: absolute;
+  left: 50%;
+  top: 73.5%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(var(--u) * 10);
+  text-align: center;
+  opacity: 0;
+  transition: opacity .7s ease;
+}
+.intro:not(.is-gate) .gate { display: none; }
+.intro.gate-ready .gate { opacity: 1; }
+.gate p { margin: 0; white-space: nowrap; }
+.gate-kicker {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: max(9px, calc(var(--u) * 12));
+  letter-spacing: .3em;
+  color: var(--hud);
+}
+.gate-kicker::after { content: "_"; animation: introBlink 1s steps(2) infinite; }
+.gate-name {
+  padding-left: .4em;
+  font-family: "Inter", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: calc(var(--u) * 26);
+  letter-spacing: .4em;
+  color: #eaf6ff;
+  text-shadow: 0 0 18px rgba(56, 189, 248, .85);
+}
+.gate-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .45em;
+  padding: calc(var(--u) * 10) calc(var(--u) * 36);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: max(11px, calc(var(--u) * 15));
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: #e6f6ff;
+  background: rgba(34, 211, 238, .1);
+  border: 1px solid var(--hud-2);
+  border-radius: 6px;
+  cursor: pointer;
+  animation: introHint 1.6s ease-in-out infinite;
+}
+.gate-start small { font-size: .62em; letter-spacing: .2em; opacity: .75; }
+.gate-start:hover,
+.gate-start:focus-visible { background: rgba(34, 211, 238, .2); outline: none; }
+.gate-mute {
+  padding: calc(var(--u) * 4) calc(var(--u) * 8);
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: max(9px, calc(var(--u) * 11));
+  letter-spacing: .18em;
+  color: rgba(186, 230, 253, .6);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: .3em;
+  cursor: pointer;
+}
+.gate-mute:hover,
+.gate-mute:focus-visible { color: #fff; outline: none; }
+
+/* En la pantalla de inicio solo se ve el núcleo y la invitación */
+.intro.is-gate .hud-wide,
+.intro.is-gate .intro-title,
+.intro.is-gate .intro-status,
+.intro.is-gate .intro-progress,
+.intro.is-gate .intro-pct,
+.intro.is-gate .intro-actions { display: none; }
+/* Mientras habla la voz, el núcleo late */
+.intro.speaking .hud-core { filter: drop-shadow(0 0 16px rgba(125, 211, 252, .85)); }
+.intro.speaking .core-halo { animation: hudVoice .5s ease-in-out infinite; }
+@keyframes hudVoice { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.22); } }
 
 /* ---------- Elementos del HUD (SVG) ---------- */
 .hud { display: block; overflow: visible; }
@@ -320,7 +432,12 @@ html.intro-done .intro { opacity: 0; transform: scale(1.05); visibility: hidden;
   .intro-title { --ls: .28em; top: 66%; font-size: calc(var(--u) * 21); }
   .intro-status { top: 72%; font-size: calc(var(--u) * 11); letter-spacing: .14em; }
   .intro-progress { top: 78%; width: 68%; }
-  .intro-skip { top: 95%; font-size: calc(var(--u) * 11); }
+  .gate { top: 63%; }
+  .gate-name { font-size: calc(var(--u) * 20); letter-spacing: .28em; padding-left: .28em; }
+  .gate-start { font-size: calc(var(--u) * 14); padding: calc(var(--u) * 10) calc(var(--u) * 28); }
+  .intro-actions { top: 95%; }
+  .intro-btn { font-size: calc(var(--u) * 11); letter-spacing: .12em; }
+  .intro-sound { min-width: 0; }
   .intro-pct {
     right: auto;
     bottom: auto;
