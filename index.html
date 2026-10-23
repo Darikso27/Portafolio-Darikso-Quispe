@@ -214,6 +214,7 @@
     <nav id="menu">
       <a href="#servicios">Servicios</a>
       <a href="#proyectos">Proyectos</a>
+      <a href="#subir-imagenes">Subir fotos</a>
       <a href="#stack">Tecnologías</a>
       <a href="#sobre-mi">Sobre mí</a>
       <a href="#contacto" class="btn btn-small">Contacto</a>
@@ -275,9 +276,79 @@
       </div>
     </section>
 
-    <section id="stack" class="section">
+    <section id="subir-imagenes" class="section">
       <div class="container">
-        <p class="eyebrow mono">03 / tecnologías</p>
+        <p class="eyebrow mono">03 / gestor multimedia</p>
+        <h2>Subir imágenes desde celular</h2>
+        <p class="lead">Carga capturas de pantalla de tus apps móviles, fotos de tus proyectos o diagramas directamente desde tu teléfono móvil. Usa la cámara en vivo o selecciona desde tu galería de fotos.</p>
+
+        <div class="upload-panel card">
+          <div class="upload-options">
+            <div class="upload-control-group">
+              <label for="imgCategory" class="mono label-sm">📁 Carpeta de destino:</label>
+              <select id="imgCategory" class="select-dark">
+                <option value="img/movil/">Móvil (img/movil/)</option>
+                <option value="img/web/">Web (img/web/)</option>
+                <option value="img/bases-de-datos/">Bases de datos (img/bases-de-datos/)</option>
+                <option value="img/datos/">Datos e IA (img/datos/)</option>
+                <option value="img/">General (img/)</option>
+              </select>
+            </div>
+
+            <div class="upload-control-group">
+              <label for="customImgName" class="mono label-sm">🏷️ Nombre sugerido (opcional):</label>
+              <input type="text" id="customImgName" class="input-dark" placeholder="ej. magic-food-login">
+            </div>
+          </div>
+
+          <div class="dropzone" id="dropzone">
+            <div class="dropzone-icon">📲</div>
+            <h3>Toma una foto o selecciona de tu galería</h3>
+            <p>Optimizado para pantallas táctiles de celulares y computadoras</p>
+
+            <div class="upload-actions">
+              <label class="btn btn-camera">
+                <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden>
+                <span>📸 Tomar foto con cámara</span>
+              </label>
+              <label class="btn btn-ghost btn-gallery">
+                <input type="file" id="galleryInput" accept="image/*" multiple hidden>
+                <span>🖼️ Elegir de la galería</span>
+              </label>
+            </div>
+            <p class="dropzone-hint mono">Soporta JPG, PNG, WEBP · Se almacenan de forma segura en tu navegador</p>
+          </div>
+
+          <div class="upload-status" id="uploadStatus" aria-live="polite"></div>
+        </div>
+
+        <div class="gallery-header">
+          <div class="gallery-title-wrap">
+            <h3 class="mono">Imágenes guardadas (<span id="savedCount">0</span>)</h3>
+            <p class="mono sub-count">Almacenadas en tu dispositivo</p>
+          </div>
+          <button id="clearAllBtn" class="btn btn-ghost btn-small" type="button" style="display: none;">🗑️ Borrar todas</button>
+        </div>
+
+        <div class="grid cols-3" id="uploadedGallery">
+          <!-- Se cargan dinámicamente con JavaScript -->
+        </div>
+
+        <div class="card help-card">
+          <div class="icon">💡</div>
+          <div class="help-content">
+            <h4>¿Cómo vincular una captura a tus proyectos?</h4>
+            <p>1. Sube tu foto desde el móvil y pulsa en <strong>"Copiar ruta"</strong>.<br>
+               2. Abre <code>projects.js</code> y pégala en el campo <code>image: "img/movil/tu-foto.jpg"</code> del proyecto deseado.<br>
+               3. Guarda o descarga el archivo en la carpeta correspondiente de tu repositorio.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="section alt">
+      <div class="container">
+        <p class="eyebrow mono">04 / tecnologías</p>
         <h2>Mi stack</h2>
         <div class="stack">
           <div>
@@ -308,9 +379,9 @@
       </div>
     </section>
 
-    <section id="sobre-mi" class="section alt">
+    <section id="sobre-mi" class="section">
       <div class="container">
-        <p class="eyebrow mono">04 / sobre mí</p>
+        <p class="eyebrow mono">05 / sobre mí</p>
         <h2>Trayectoria</h2>
         <p class="lead about">Egresado de Ingeniería de Ciencias de Datos e Inteligencia Artificial en SENATI. Actualmente dirijo Minicodevelopers S.A.C.S., una empresa de desarrollo de software, y sigo participando como desarrollador en sus proyectos. Me gusta resolver problemas reales con tecnología y aprender de forma continua.</p>
 
@@ -374,9 +445,9 @@
       </div>
     </section>
 
-    <section id="contacto" class="section">
+    <section id="contacto" class="section alt">
       <div class="container contact">
-        <p class="eyebrow mono">05 / contacto</p>
+        <p class="eyebrow mono">06 / contacto</p>
         <h2>¿Tienes un proyecto en mente?</h2>
         <p class="lead">Cuéntame qué necesitas y te respondo con una propuesta.</p>
         <div class="cta">
@@ -388,6 +459,19 @@
     </section>
   </main>
 
+  <!-- Modal visor de imagen completa -->
+  <div id="imageLightbox" class="lightbox" aria-hidden="true" role="dialog">
+    <div class="lightbox-overlay" id="lightboxOverlay"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar visor">✕</button>
+      <img id="lightboxImg" src="" alt="Vista previa">
+      <div class="lightbox-caption">
+        <span id="lightboxTitle" class="mono"></span>
+        <span id="lightboxInfo" class="mono"></span>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <div class="container mono">© <span id="year"></span> Darikso Daniel Quispe Vargas · Lima, Perú</div>
   </footer>
@@ -396,5 +480,6 @@
   <script src="intro.js"></script>
   <script src="projects.js"></script>
   <script src="script.js"></script>
+  <script src="uploader.js"></script>
 </body>
 </html>
